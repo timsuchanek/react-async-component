@@ -368,7 +368,7 @@ function asyncComponent(args) {
           });
         };
 
-        if (typeof window !== 'undefined') {
+        if (typeof window !== 'undefined' || navigator.userAgent !== 'SSR') {
           // BROWSER BASED LOGIC
 
           var _getRehydrate = getRehydrate(id),
@@ -376,9 +376,6 @@ function asyncComponent(args) {
               error = _getRehydrate.error;
 
           if (type === 'unresolved') {
-            if (navigator.userAgent !== 'SSR') {
-              return doResolve();
-            }
             return false;
           }
           if (type === 'error') {

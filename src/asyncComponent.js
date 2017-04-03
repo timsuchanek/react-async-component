@@ -83,14 +83,11 @@ function asyncComponent(args) {
           Component => typeof Component === 'function',
         )
 
-      if (typeof window !== 'undefined') {
+      if (typeof window !== 'undefined' || navigator.userAgent !== 'SSR') {
         // BROWSER BASED LOGIC
 
         const { type, error } = getRehydrate(id)
         if (type === 'unresolved') {
-          if (navigator.userAgent !== 'SSR') {
-            return doResolve()
-          }
           return false
         }
         if (type === 'error') {
