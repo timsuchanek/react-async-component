@@ -88,6 +88,9 @@ function asyncComponent(args) {
 
         const { type, error } = getRehydrate(id)
         if (type === 'unresolved') {
+          if (navigator.userAgent !== 'SSR') {
+            return doResolve()
+          }
           return false
         }
         if (type === 'error') {
