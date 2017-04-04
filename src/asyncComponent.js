@@ -102,7 +102,7 @@ function asyncComponent(args) {
       const doResolve = () =>
         this.resolveModule().then(module => module !== undefined)
 
-      if (typeof window !== 'undefined') {
+      if (navigator.userAgent !== 'SSR') {
         // BROWSER BASED LOGIC
         return shouldRehydrate(sharedState.id) ? doResolve() : false
       }

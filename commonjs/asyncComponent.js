@@ -139,7 +139,7 @@ function asyncComponent(args) {
           });
         };
 
-        if (typeof window !== 'undefined') {
+        if (navigator.userAgent !== 'SSR') {
           // BROWSER BASED LOGIC
           return shouldRehydrate(sharedState.id) ? doResolve() : false;
         }
