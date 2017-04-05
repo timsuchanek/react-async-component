@@ -39,7 +39,8 @@ function asyncComponent(config) {
     throw new Error('Invalid serverMode provided to asyncComponent');
   }
 
-  var env = typeof window === 'undefined' ? 'node' : 'browser';
+  var env = navigator.userAgent === 'SSR' ? 'node' : 'browser';
+  // var env = 'node'
 
   var sharedState = {
     // A unique id we will assign to our async component which is especially
